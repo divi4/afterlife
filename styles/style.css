@@ -1,0 +1,328 @@
+/*
+    Colors:
+    #a3ddcb; Sky blue
+    #e8e9a1; Creamy yellow
+    #e6b566; Light orange
+    #e5707e; Pink
+    #ed1c24; Red
+*/
+
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+html {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: arial, sans-serif;
+    font-size: 62.5%;
+}
+body {
+    text-align: center;
+    background-color: #a3ddcb;
+    margin: 2.6rem;
+}
+@media all and (min-width: 975px) {
+    body {
+        margin: 0;
+    }
+}
+button {
+    font-size: 1.8rem;
+    background-color: #a3ddcb;
+    border: 3px solid #e6b566;
+    padding: 1rem 2rem;
+    margin: 1rem;
+}
+button:hover,
+button:active {
+    border: 3.5px solid #e8e9a1;
+}
+button:active {
+    transform: translate(0, 2px);
+}
+a {
+    text-decoration-style: dashed;
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+header {
+
+}
+.first-section {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: stretch;
+}
+.third-section {
+
+}
+.col-1-2 {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+.lists {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+@media all and (min-width: 526px) {
+    .lists {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+}
+.text-align-left {
+    text-align: left;
+}
+/* Fix for IE */
+/* .svg-container {
+    width: 50%;
+    height: 0;
+    padding-top: 48%;
+    position: relative;
+}
+.svg-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+} */
+.check {
+    border: 1px solid red;
+}
+.drag-exp {
+    display: none;
+}
+@media all and (min-width: 526px) {
+    .drag-exp {
+        display: block;
+    }
+/* Replace svg with weighing-start */
+}
+footer {
+
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+.row {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.row button {
+    flex-basis: 245px;
+    flex-grow: 1;
+}
+@media all and (min-width: 360px) {
+    .row button {
+        flex-basis: 190px;
+    }
+}
+@media all and (min-width: 500px) {
+    .row button {
+        flex-basis: 150px;
+    }
+}
+@media all and (min-width: 700px) {
+    .lists div {
+        flex-basis: 200px;
+    }
+    .lists div:last-of-type {
+        margin-left: 8rem;
+    }
+    .row button {
+        flex-basis: 125px;
+    }
+}
+.hidden {
+    display: none;
+}
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    margin-top: 25rem;
+    margin-bottom: 25rem;
+}
+/******************************************
+/* Typography
+/*******************************************/
+h1,
+h2 {
+    font-family: "EB Garamond", arial, sans-serif;
+    font-size: 2.8rem;
+}
+p {
+    font-size: 2rem;
+}
+li {
+    font-size: 2rem;
+}
+/******************************************
+/* Progress bar
+/*******************************************/
+.progress-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    margin: 3rem;
+}
+/* Have it take in input of prev progress width and current progress width */
+@keyframes bar {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 394px;
+    }
+}
+.bar {
+    display: flex;
+    align-items: flex-end;
+    height: 15px;
+    width: 400px;
+    border: 3px solid #000;
+    border-radius: 15px;
+}
+.active {
+    animation: bar 5s ease .5s forwards;
+    animation-play-state: running;
+}
+.progress {
+    height: 11px;
+    width: 0px;
+    border-radius: 4px;
+    background-color: #ed1c24;
+}
+/******************************************
+/* Fade transitions
+/*******************************************/
+/* Fade out */
+.fade-out {
+  animation: fadeOut 2250ms ease forwards;
+  -webkit-animation: fadeOut 2250ms ease forwards;
+  -moz-animation: fadeOut 2250ms ease forwards;
+  -o-animation: fadeOut 2250ms ease forwards;
+  -ms-animation: fadeOut 2250ms ease forwards;
+}
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+/* Fadein */
+.fade-in {
+  animation: fadeIn 1750ms ease forwards;
+  -webkit-animation: fadeIn 1750ms ease forwards;
+  -moz-animation: fadeIn 1750ms ease forwards;
+  -o-animation: fadeIn 1750ms ease forwards;
+  -ms-animation: fadeIn 1750ms ease forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+}
