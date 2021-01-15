@@ -121,7 +121,6 @@ header {
     .drag-exp {
         display: block;
     }
-    /* Replace svg with weighing-end */
 }
 footer {
 
@@ -215,7 +214,7 @@ li {
     animation-play-state: running;
 }
 .progress {
-    height: 11px;
+    height: 10px;
     width: 0px;
     border-radius: 4px;
     background-color: #ed1c24;
