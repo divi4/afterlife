@@ -78,7 +78,13 @@ let tally = 0;
 let counter = 0;
 let width = 0;
 
-const svg = document.querySelector(".svg-content").contentDocument;
+
+let rotation = 0;
+let translateXLeft = -4;
+let translateXRight = -0.5;
+let translateYLeft = 17;
+let translateYRight = -16;
+let interval;
 
 window.addEventListener("load", function() {
     setText(getText());
@@ -92,20 +98,23 @@ document.querySelectorAll(".answer").forEach(element => element.addEventListener
             fadeOutTransition(".first-section");
             setTimeout(fadeInTransition(".second-section"), 1500);
         } else {
-            updateProgress();
             updateTally(counter, e.target.id)
             setText(getText());
+            updateProgress();
         }
 }));
 
 
 document.querySelector(".reset").addEventListener("click", function() {
     fadeOutTransition(".third-section");
+    fadeOutTransition(".tallying");
+    fadeOutTransition(".judgement");
     setTimeout(() => {
             resetProgress();
             resetTally();
             setText(getText(resetCounter()));
             fadeInTransition(".first-section");
+            resetScales();
     } , 2250)
 })
 
@@ -135,18 +144,20 @@ function updateTally(counter, e) {
 
 
 function setTally() {
-    if(tally > 5) {
-        setTimeout(() => {
-            document.querySelector(".tallying").innerText = "Osiris will allow you into the kingdom of the dead";
-            document.querySelector(".reward-text").innerText = "Welcome to the afterlife! Take your time and enjoy...";
-        }, 2000);
+    if(tally > 2) {
+        startScale(1);
+        document.querySelector(".tallying").innerText = "Osiris will allow you into the kingdom of the dead";
+        document.querySelector(".reward-text").innerText = "Welcome to the afterlife! Take your time and enjoy...";
     } else {
-        setTimeout(() => {
-            document.querySelector(".tallying").innerText = "You have failed, Ammit, the crocodile-faced beast will now end your soul's existence";
-            document.querySelector(".reward-text").innerText = "Whilst your gobbled up by Ammit, here's what the righteous are enjoying...";
-        }, 2000);
+        startScale(0);
+        document.querySelector(".tallying").innerText = "You have failed, Ammit, the crocodile-faced beast will now end your soul's existence";
+        document.querySelector(".reward-text").innerText = "Whilst your gobbled up by Ammit, here's what the righteous are enjoying...";
     }
-}
+    setTimeout(function() {
+        fadeInTransition(".tallying");
+        fadeInTransition(".judgement");
+    }, 800);
+};
 
 
 function resetTally() {
@@ -160,6 +171,9 @@ function fadeOutTransition(myClass) {
     setTimeout(() => {
         document.querySelector(myClass).classList.add("hidden");
         document.querySelector(myClass).classList.remove("fade-out");
+        if(myClass === ".tallying" || myClass === ".judgement") {
+            document.querySelector(myClass).classList.add("invisible");
+        }
         if(myClass === ".second-section") {
             setTally()
             fadeInTransition(".third-section");
@@ -171,6 +185,7 @@ function fadeOutTransition(myClass) {
 function fadeInTransition(myClass) {
     document.querySelector(myClass).classList.add("fade-in");
     document.querySelector(myClass).classList.remove("hidden");
+    document.querySelector(myClass).classList.remove("invisible");
     setTimeout(() => {
         document.querySelector(myClass).classList.remove("fade-in");
         if(myClass === ".second-section") {
@@ -211,13 +226,14 @@ function resetText() {
 
 
 // Animation to move arm and plates of scales
-let rotation = 0;
-let translateXLeft = -4;
-let translateXRight = -0.5;
-let translateYLeft = 17;
-let translateYRight = -16;
+function startScale(check) {
+    if(check === 1) {
+        interval = setInterval(scaleWin, 50);
+    } else if(check === 0) {
+        interval = setInterval(scaleLose, 50);
+    }
+}
 
-setInterval(scaleLose, 50)
 
 function scaleWin() {
     if(rotation <= 6) {
@@ -234,7 +250,7 @@ function scaleWin() {
         rPlateWin();
 
     } else {
-        return;
+        return "setInterval(scaleWin, 50)";
     }
 };
 
@@ -273,7 +289,7 @@ function scaleLose() {
         rPlateLose();
 
     } else {
-        return
+        return "setInterval(scaleLose, 50)";
     }
 };
 
@@ -293,4 +309,28 @@ function rPlateLose() {
     document.querySelector("#r-plate").style.mozTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
     document.querySelector("#r-plate").style.msTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
     document.querySelector("#r-plate").style.transform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+}
+
+
+function resetScales() {
+    clearInterval(interval);
+    rotation = 0;
+    translateXLeft = -4;
+    translateXRight = -0.5;
+    translateYLeft = 17;
+    translateYRight = -16;
+    document.querySelector("#arm").style.webkitTransform = 'rotate('+ 0 +')'
+    document.querySelector("#arm").style.mozTransform = 'rotate('+ 0 +')'
+    document.querySelector("#arm").style.msTransform = 'rotate('+ 0 +')'
+    document.querySelector("#arm").style.transform = 'rotate('+ 0 +')'
+
+    document.querySelector("#l-plate").style.webkitTransform = 'translate(' + -4 + 'px, ' + 17 + 'px)'
+    document.querySelector("#l-plate").style.mozTransform = 'translate(' + -4 + 'px, ' + 17 + 'px)'
+    document.querySelector("#l-plate").style.msTransform = 'translate(' + -4 + 'px, ' + 17 + 'px)'
+    document.querySelector("#l-plate").style.transform = 'translate(' + -4 + 'px, ' + 17 + 'px)'
+
+    document.querySelector("#r-plate").style.webkitTransform = 'translate(' + -0.5 + 'px, ' + -16 + 'px)'
+    document.querySelector("#r-plate").style.mozTransform = 'translate(' + -0.5 + 'px, ' + -16 + 'px)'
+    document.querySelector("#r-plate").style.msTransform = 'translate(' + -0.5 + 'px, ' + -16 + 'px)'
+    document.querySelector("#r-plate").style.transform = 'translate(' + -0.5 + 'px, ' + -16 + 'px)'
 }
