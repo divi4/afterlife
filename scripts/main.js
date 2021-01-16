@@ -10,7 +10,7 @@ const texts = {
             ans4: ["Ignore The Rumor. Just Enjoy Your Wonderful Life At School.", -1]
         },
     2: {
-            question: "You And A Friend Can't See A Movie Cause Your Not 18. You...",
+            question: "Your having a bad hair day. You...",
             ans1: ["Use Your Hands To Mix It Up And Its Good As New For You.", -1],
             ans2: ["Leave It Alone. Just Eat Breakfast And Fix it Up Later Afternoon Or Other Time.", -2],
             ans3: ["Take A Shower And Look In The Mirror On How It Looks.", 1],
@@ -24,7 +24,7 @@ const texts = {
             ans4: ["Wait Until Your 18 So You Can See The Movie In The Complex.", 1]
         },
     4: {
-            question: "You Are Stuck In A Hotel With 6 Rooms. You...",
+            question: "You Are Stuck In A Hotel With 4 Rooms. You...",
             ans1: ["Get In The One Filled With The Things You Can Buy Like The Mall.", 2],
             ans2: ["Get In The One Filled With Cruise Ships To A Luxurious Hotel.", 1],
             ans3: ["Get In The One Filled With Hungry Tigers And Bloody-Sucking Bats.", -2],
@@ -76,7 +76,9 @@ const texts = {
 
 let tally = 0;
 let counter = 0;
-let x = 0;
+let width = 0;
+
+const svg = document.querySelector(".svg-content").contentDocument;
 
 window.addEventListener("load", function() {
     setText(getText());
@@ -122,8 +124,8 @@ function updateBar() {
 
 
 function updateProgress() {
-    x = updateBar() * counter;
-    document.querySelector(".progress").style.width = `${x}px`;
+    width = updateBar() * counter;
+    document.querySelector(".progress").style.width = `${width}px`;
 }
 
 
@@ -134,11 +136,15 @@ function updateTally(counter, e) {
 
 function setTally() {
     if(tally > 5) {
-        document.querySelector(".tallying").innerText = "Osiris will allow you into the kingdom of the dead";
-        document.querySelector(".reward-text").innerText = "Welcome to the afterlife! Take your time and enjoy...";
+        setTimeout(() => {
+            document.querySelector(".tallying").innerText = "Osiris will allow you into the kingdom of the dead";
+            document.querySelector(".reward-text").innerText = "Welcome to the afterlife! Take your time and enjoy...";
+        }, 2000);
     } else {
-        document.querySelector(".tallying").innerText = "You have failed, Ammit, the crocodile-faced beast will now end your soul's existence";
-        document.querySelector(".reward-text").innerText = "Whilst your gobbled up by Ammit, here's what the righteous are enjoying...";
+        setTimeout(() => {
+            document.querySelector(".tallying").innerText = "You have failed, Ammit, the crocodile-faced beast will now end your soul's existence";
+            document.querySelector(".reward-text").innerText = "Whilst your gobbled up by Ammit, here's what the righteous are enjoying...";
+        }, 2000);
     }
 }
 
@@ -201,4 +207,90 @@ function resetText() {
     document.querySelector("#ans2").innerText = "";
     document.querySelector("#ans3").innerText = "";
     document.querySelector("#ans4").innerText = "";
+}
+
+
+// Animation to move arm and plates of scales
+let rotation = 0;
+let translateXLeft = -4;
+let translateXRight = -0.5;
+let translateYLeft = 17;
+let translateYRight = -16;
+
+setInterval(scaleLose, 50)
+
+function scaleWin() {
+    if(rotation <= 6) {
+        rotation += 0.3;
+        translateXLeft -= 0.1;
+        translateXRight -= 0.2;
+
+        document.querySelector("#arm").style.webkitTransform = 'rotate('+ rotation +'deg)'
+        document.querySelector("#arm").style.mozTransform = 'rotate('+ rotation +'deg)'
+        document.querySelector("#arm").style.msTransform = 'rotate('+ rotation +'deg)'
+        document.querySelector("#arm").style.transform = 'rotate('+ rotation +'deg)'
+
+        lPlateWin();
+        rPlateWin();
+
+    } else {
+        return;
+    }
+};
+
+
+function lPlateWin() {
+    translateYLeft -= 0.4;
+    document.querySelector("#l-plate").style.webkitTransform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+    document.querySelector("#l-plate").style.mozTransform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+    document.querySelector("#l-plate").style.msTransform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+    document.querySelector("#l-plate").style.transform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+}
+
+
+function rPlateWin() {
+    translateYRight += 0.3;
+    document.querySelector("#r-plate").style.webkitTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+    document.querySelector("#r-plate").style.mozTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+    document.querySelector("#r-plate").style.msTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+    document.querySelector("#r-plate").style.transform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+}
+
+
+function scaleLose() {
+    if(rotation >= -6) {
+        rotation -= 0.3;
+        translateXLeft += 0.2;
+        translateXRight += 0.1;
+
+
+        document.querySelector("#arm").style.webkitTransform = 'rotate('+ rotation +'deg)'
+        document.querySelector("#arm").style.mozTransform = 'rotate('+ rotation +'deg)'
+        document.querySelector("#arm").style.msTransform = 'rotate('+ rotation +'deg)'
+        document.querySelector("#arm").style.transform = 'rotate('+ rotation +'deg)'
+
+        lPlateLose();
+        rPlateLose();
+
+    } else {
+        return
+    }
+};
+
+
+function lPlateLose() {
+    translateYLeft += 0.3;
+    document.querySelector("#l-plate").style.webkitTransform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+    document.querySelector("#l-plate").style.mozTransform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+    document.querySelector("#l-plate").style.msTransform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+    document.querySelector("#l-plate").style.transform = 'translate(' + translateXLeft + 'px, ' + translateYLeft + 'px)'
+}
+
+
+function rPlateLose() {
+    translateYRight -= 0.35;
+    document.querySelector("#r-plate").style.webkitTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+    document.querySelector("#r-plate").style.mozTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+    document.querySelector("#r-plate").style.msTransform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
+    document.querySelector("#r-plate").style.transform = 'translate(' + translateXRight + 'px, ' + translateYRight + 'px)'
 }

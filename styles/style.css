@@ -84,7 +84,7 @@ header {
     flex-flow: row nowrap;
     justify-content: center;
 }
-.lists {
+/* .lists {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -95,7 +95,7 @@ header {
         flex-flow: row nowrap;
         justify-content: center;
     }
-}
+} */
 .text-align-left {
     text-align: left;
 }
@@ -117,10 +117,19 @@ header {
 .drag-exp {
     display: none;
 }
-@media all and (min-width: 526px) {
+/* @media all and (min-width: 526px) {
     .drag-exp {
         display: block;
     }
+    .scales {
+        display: none;
+    }
+    .scales-mobile {
+        display: block;
+    }
+} */
+ul {
+    padding-right: 40px;
 }
 footer {
 
@@ -324,4 +333,52 @@ li {
   }
   100% {
     opacity:1;
+}
+
+
+
+/******************************************
+/* Scales transitions
+/*******************************************/
+#arm {
+    -webkit-transform: rotate(0);  /* Chrome, Safari 3.1+ */
+    -moz-transform: rotate(0);  /* Firefox 3.5-15 */
+    -ms-transform: rotate(0);  /* IE 9 */
+    -o-transform: rotate(0);  /* Opera 10.50-12.00 */
+    transform: rotate(0);  /* Firefox 16+, IE 10+, Opera 12.10+ */
+
+    -webkit-transform-origin: 50% 0;  /* Chrome, Safari 3.1+ */
+    -moz-transform-origin: 50% 0;  /* Firefox 3.5-15 */
+    -ms-transform-origin: 50% 0;  /* IE 9 */
+    -o-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+}
+
+#l-plate {
+    -webkit-transform: translate(-4px, 17px);  /* Chrome, Safari 3.1+ */
+    -moz-transform: translate(-4px, 17px);  /* Firefox 3.5-15 */
+    -ms-transform: translate(-4px, 17px);  /* IE 9 */
+    -o-transform: translate(-4px, 17px);  /* Opera 10.50-12.00 */
+    transform: translate(-4px, 17px);  /* Firefox 16+, IE 10+, Opera 12.10+ */
+
+    -webkit-transform-origin: 50% 0;  /* Chrome, Safari 3.1+ */
+    -moz-transform-origin: 50% 0;  /* Firefox 3.5-15 */
+    -ms-transform-origin: 50% 0;  /* IE 9 */
+    -o-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+}
+
+
+#r-plate {
+    -webkit-transform: translate(-0.5px, -16px);  /* Chrome, Safari 3.1+ */
+    -moz-transform: translate(-0.5px, -16px);  /* Firefox 3.5-15 */
+    -ms-transform: translate(-0.5px, -16px);  /* IE 9 */
+    -o-transform: translate(-0.5px, -16px);  /* Opera 10.50-12.00 */
+    transform: translate(-0.5px, -16px);  /* Firefox 16+, IE 10+, Opera 12.10+ */
+
+    -webkit-transform-origin: 50% 0;  /* Chrome, Safari 3.1+ */
+    -moz-transform-origin: 50% 0;  /* Firefox 3.5-15 */
+    -ms-transform-origin: 50% 0;  /* IE 9 */
+    -o-transform-origin: 50% 0;
+    transform-origin: 50% 0;
 }
