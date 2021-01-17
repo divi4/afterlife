@@ -138,6 +138,7 @@ header {
     }
     .row button {
         min-width: 305px;
+        max-width: 460px;
         flex-basis: 125px;
     }
 }
