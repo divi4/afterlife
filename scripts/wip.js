@@ -12,8 +12,8 @@ const texts = {
     2: {
             question: "Your having a bad hair day. You...",
             ans1: ["Use Your Hands To Mix It Up And Its Good As New For You.", -1],
-            ans2: ["Leave It Alone. Just Eat Breakfast And Fix it Up Late Afternoon Or Whenever.", -2],
-            ans3: ["Take A Shower And Look In The Mirror To See How It Looks.", 1],
+            ans2: ["Leave It Alone. Just Eat Breakfast And Fix it Up Later Afternoon Or Other Time.", -2],
+            ans3: ["Take A Shower And Look In The Mirror On How It Looks.", 1],
             ans4: ["Fix Up The Hair By Brushing And Combing It Before Eating Breakfast.", 2]
         },
     3: {
@@ -25,10 +25,10 @@ const texts = {
         },
     4: {
             question: "You Are Stuck In A Hotel With 4 Rooms. You...",
-            ans1: ["Get In The One Filled With The Things You Can Buy Like From The Mall.", 2],
-            ans2: ["Get In The One Filled With Cruise Ships And Luxurious Hotels.", 1],
-            ans3: ["Get In The One Filled With Hungry Tigers And Blood-Sucking Bats.", -2],
-            ans4: ["Get In The One Filled With Assassins Holding Firing Tommy Guns", -1]
+            ans1: ["Get In The One Filled With The Things You Can Buy Like The Mall.", 2],
+            ans2: ["Get In The One Filled With Cruise Ships To A Luxurious Hotel.", 1],
+            ans3: ["Get In The One Filled With Hungry Tigers And Bloody-Sucking Bats.", -2],
+            ans4: ["Get In The One Filled With Assassinators Holding Tommy Guns Pulling The Trigger.", -1]
         },
     5: {
             question: "You Are Too Dizzy To Do Things. You...",
@@ -39,15 +39,15 @@ const texts = {
         },
     6: {
             question: "You Can't Buy A Pearl Necklace. You...",
-            ans1: ["Rob The Jewelry Store Necklace And Put It On Yourself To Play With.", -2],
+            ans1: ["Be Annoyed And Glare At The Jewel Clerk Very Angrily.", -1],
             ans2: ["Ask If You Have Enough Money To Buy Something Else To Wear.", 2],
-            ans3: ["Be Annoyed And Glare At The Jewel Clerk Very Angrily.", -1],
-            ans4: ["Go To Another Jewelry Store That Makes The Jewelry Very, Very Cheap.", 1]
+            ans3: ["Rob The Jewelry Store Necklace And Put It On Yourself To Play With.", -2],
+            ans4: ["Go To Another Jewelry Store That Makes The Jewelry Very,Very Cheap.", 1]
         },
     7: {
             question: "Be honest: Do you ever root for the bad guys to win in an action movie? ",
             ans1: ["All the time. Good guys are boring.", -2],
-            ans2: ["I might enjoy the violence but I always root for good to triumph in the end", 1],
+            ans2: ["I might enjoy the violent scenes, but I always root for good or triumph in the end", 1],
             ans3: ["Violence in movies bothers me a little (or a lot)", 2],
             ans4: ["Depends...how cute are the 'bad guys'?", -1]
         },
@@ -61,22 +61,23 @@ const texts = {
     9: {
             question: "Have you ever done any community service? ",
             ans1: ["I regularly donate my time.", 2],
-            ans2: ["I haven't but I plan on doing some in the future.", 1],
-            ans3: ["Nope, don't see the point.", -2],
-            ans4: ["I've done some, but only to buff up my resume.", -1]
+            ans2: ["Nope, don't see the point.", -2],
+            ans3: ["I've done some, but only to buff up my resume.", 1],
+            ans4: ["Yes. But only because I was ordered to.", -1]
         },
     10: {
             question: "Two men are arguing in a public space. They are close to coming to blows. What do you hope happens next? ",
-            ans1: ["FIGHT! FIGHT!", -2],
+            ans1: ["I hope I can intervene as an ass-kicker.", 1],
             ans2: ["I hope I can intervene as a peacemaker.", 2],
-            ans3: ["I hope I can intervene as an ass-kicker.", 1],
+            ans3: ["FIGHT! FIGHT!", -2],
             ans4: ["I hope I don't see anyone get hurt.", -1]
         }
 }
 
-let tally = 0;
+let tally = [];
 let counter = 0;
 let width = 0;
+let j = 0;
 
 
 let rotation = 0;
@@ -96,7 +97,6 @@ document.querySelectorAll(".answer").forEach(element => element.addEventListener
             counter = 11;
             updateProgress();
             fadeOutTransition(".first-section");
-            fadeOutTransition("footer");
             setTimeout(fadeInTransition(".second-section"), 1500);
         } else {
             updateTally(counter, e.target.id)
@@ -108,7 +108,6 @@ document.querySelectorAll(".answer").forEach(element => element.addEventListener
 
 document.querySelector(".reset").addEventListener("click", function() {
     fadeOutTransition(".third-section");
-    fadeOutTransition("footer");
     fadeOutTransition(".tallying");
     fadeOutTransition(".judgement");
     setTimeout(() => {
@@ -116,15 +115,14 @@ document.querySelector(".reset").addEventListener("click", function() {
             resetTally();
             setText(getText(resetCounter()));
             fadeInTransition(".first-section");
-            fadeInTransition("footer");
             resetScales();
     } , 2250)
 })
 
 
 function resetProgress() {
-    width = 0;
-    document.documentElement.style.setProperty("--x", width);
+    x = 0;
+    document.querySelector(".progress").style.width = x;
 }
 
 
@@ -137,22 +135,49 @@ function updateBar() {
 
 function updateProgress() {
     width = updateBar() * counter;
-    document.documentElement.style.setProperty("--x", width + "px");
+    document.querySelector(".progress").style.width = `${width}px`;
 }
 
 
 function updateTally(counter, e) {
-    tally += texts[counter][e][1];
+    tally[counter-1] = texts[counter][e][1];
 }
 
 
-function setTally() {
-    if(tally > 2) {
-        startScale(1);
+function runTally() {
+    // if(j < tally.length) {
+    //     setTimeout(function() {
+    //         if(tally[j] === 1) {
+    //             scaleWin()
+    //             console.log(1);
+    //         } else if(tally[j] === 2) {
+    //             scaleWin()
+    //             scaleWin()
+    //             console.log(2);
+    //         } else if(tally[j] === -1) {
+    //             scaleLose()
+    //             console.log(-1);
+    //         } else if(tally[j] === -2) {
+    //             scaleLose()
+    //             console.log(-2);
+    //         }
+    //         j += 1;
+    //     }, 500);
+    // } else {
+    //     return "setInterval(runTally(), 400)";
+    // }
+    const total = tally.reduce((a, b) => a + b, 0);
+    setResults(total);
+}
+
+
+function setResults(total) {
+    if(total > 3) {
+        scaleWin(1);
         document.querySelector(".tallying").innerText = "Osiris will allow you into the kingdom of the dead";
         document.querySelector(".reward-text").innerText = "Welcome to the afterlife! Take your time and enjoy...";
     } else {
-        startScale(0);
+        scaleWin(0);
         document.querySelector(".tallying").innerText = "You have failed, Ammit, the crocodile-faced beast will now end your soul's existence";
         document.querySelector(".reward-text").innerText = "Whilst your gobbled up by Ammit, here's what the righteous are enjoying...";
     }
@@ -164,7 +189,7 @@ function setTally() {
 
 
 function resetTally() {
-    tally = 0;
+    tally = [];
 }
 
 
@@ -178,9 +203,8 @@ function fadeOutTransition(myClass) {
             document.querySelector(myClass).classList.add("invisible");
         }
         if(myClass === ".second-section") {
-            setTally()
+            setResults()
             fadeInTransition(".third-section");
-            fadeInTransition("footer");
         }
     } , 1250);
 }
@@ -194,6 +218,8 @@ function fadeInTransition(myClass) {
         document.querySelector(myClass).classList.remove("fade-in");
         if(myClass === ".second-section") {
             fadeOutTransition(".second-section");
+        } else if(myClass === ".third-section") {
+                runTally(); //    const clear = setInterval(runTally(), 400);
         }
     }, 3750);
 }

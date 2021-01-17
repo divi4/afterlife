@@ -29,6 +29,9 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
+:root {
+  --x: 0;
+}
 html {
     max-width: 960px;
     margin: 0 auto;
@@ -76,26 +79,6 @@ header {
     flex-flow: column nowrap;
     align-items: stretch;
 }
-.third-section {
-
-}
-.col-1-2 {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-}
-/* .lists {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-}
-@media all and (min-width: 526px) {
-    .lists {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-    }
-} */
 .text-align-left {
     text-align: left;
 }
@@ -105,42 +88,40 @@ header {
 .drag-exp {
     display: none;
 }
-/* @media all and (min-width: 526px) {
-    .drag-exp {
-        display: block;
-    }
-    .scales {
-        display: none;
-    }
-    .scales-mobile {
-        display: block;
-    }
-} */
-ul {
-    padding-right: 40px;
-}
-footer {
-
+.question {
+    height: 8rem;
 }
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+.col-1-2 {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
 .row {
     display: flex;
     flex-flow: column nowrap;
 }
 .row button {
-    flex-basis: 245px;
     flex-grow: 1;
 }
-@media all and (min-width: 360px) {
+@media all and (min-width: 410px) {
+    .question {
+        height: 7rem;
+    }
+    .col-1-2 {
+        flex-flow: row nowrap;
+    }
     .row button {
-        flex-basis: 190px;
+        min-width: 167px;
+        flex-basis: 175px;
     }
 }
 @media all and (min-width: 500px) {
     .row button {
+        min-width: 207px;
         flex-basis: 150px;
     }
 }
@@ -151,7 +132,12 @@ footer {
     .lists div:last-of-type {
         margin-left: 8rem;
     }
+    .question {
+        margin: 0 auto;
+        max-width: 800px;
+    }
     .row button {
+        min-width: 305px;
         flex-basis: 125px;
     }
 }
@@ -180,8 +166,16 @@ h2 {
 p {
     font-size: 2rem;
 }
+ul {
+    display: table;
+    margin: 0 auto;
+    padding-left: 40px;
+    list-style-type: square;
+    color: #403b3b;
+}
 li {
     font-size: 2rem;
+    margin: 2rem 0;
 }
 /******************************************
 /* Progress bar
@@ -193,12 +187,9 @@ li {
     margin: 3rem;
 }
 /* Have it take in input of prev progress width and current progress width */
-@keyframes bar {
-    0% {
-        width: 0;
-    }
+@keyframes redLine {
     100% {
-        width: 394px;
+        width: var(--x);
     }
 }
 .bar {
@@ -210,7 +201,7 @@ li {
     border-radius: 15px;
 }
 .active {
-    animation: bar 5s ease .5s forwards;
+    animation: redLine 5s cubic-bezier(0.12, 0, 0.39, 0) .5s forwards;
     animation-play-state: running;
 }
 .progress {
@@ -218,6 +209,14 @@ li {
     width: 0px;
     border-radius: 4px;
     background-color: #ed1c24;
+}
+*,
+*:focus,
+*:hover {
+    outline:none;
+}
+button:focus {
+    outline:0 !important;
 }
 /******************************************
 /* Fade transitions
