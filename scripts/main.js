@@ -3,46 +3,46 @@
 // Make heart draggable
 const texts = {
     1: {
-            question: "Theres A Nasty Rumor Spreading Around The School. You...",
-            ans1: ["Try To Stop The Rumor As Best As You Can And Stand On Her/His Side.", 2],
-            ans2: ["Ask A Friend To Help You Stop The Rumor As Fast As You Can.", 1],
-            ans3: ["Trash Him/Her And Make Fun Of Them. You Don't Want To Care.", -2],
-            ans4: ["Ignore The Rumor. Just Enjoy Your Wonderful Life At School.", -1]
+            question: "There's a nasty rumor spreading around the school. You...",
+            ans1: ["Try to stop the rumor as best as you can and stand on her/his side.", 2],
+            ans2: ["Ask a friend to help you stop the rumor as fast as you can.", 1],
+            ans3: ["Trash him/her and make fun of them. You don't want to care.", -2],
+            ans4: ["Ignore the rumor. Just enjoy your wonderful life at school.", -1]
         },
     2: {
             question: "Your having a bad hair day. You...",
-            ans1: ["Use Your Hands To Mix It Up And Its Good As New For You.", -1],
-            ans2: ["Leave It Alone. Just Eat Breakfast And Fix it Up Late Afternoon Or Whenever.", -2],
-            ans3: ["Take A Shower And Look In The Mirror To See How It Looks.", 1],
-            ans4: ["Fix Up The Hair By Brushing And Combing It Before Eating Breakfast.", 2]
+            ans1: ["Use your hands to mix it up and its good as new for you.", -1],
+            ans2: ["Leave it alone. Just eat breakfast and fix it up late afternoon or whenever.", -2],
+            ans3: ["Take a shower and look in the mirror to see how it looks.", 1],
+            ans4: ["Fix up the hair by brushing and combing it before eating breakfast.", 2]
         },
     3: {
-            question: "You And A Friend Can't See A Movie Cause Your Not 18. You...",
-            ans1: ["Make A Fake ID Out Of Construction Paper To Get In.", -2],
-            ans2: ["Find A Friend Whos 18 To Help You Get In And Watch The Movie.", -1],
-            ans3: ["Play Arcade Games In The Complex Before You Can Go Home.", 2],
-            ans4: ["Wait Until Your 18 So You Can See The Movie In The Complex.", 1]
+            question: "You and a friend can't see a movie cause your not 18. You...",
+            ans1: ["Make a fake ID out of construction paper to get in.", -2],
+            ans2: ["Find a friend whos 18 to help you get in and watch the movie.", -1],
+            ans3: ["Play arcade games in the complex before you can go home.", 2],
+            ans4: ["Wait until your 18 so you can see the movie in the complex.", 1]
         },
     4: {
-            question: "You Are Stuck In A Hotel With 4 Rooms. You...",
-            ans1: ["Get In The One Filled With The Things You Can Buy Like From The Mall.", 2],
-            ans2: ["Get In The One Filled With Cruise Ships And Luxurious Hotels.", 1],
-            ans3: ["Get In The One Filled With Hungry Tigers And Blood-Sucking Bats.", -2],
-            ans4: ["Get In The One Filled With Assassins Holding Firing Tommy Guns", -1]
+            question: "You are stuck in a hotel with 4 rooms. You...",
+            ans1: ["Get in the one filled with the things you can buy like from the mall.", 2],
+            ans2: ["Get in the one filled with cruise ships and luxurious hotels.", 1],
+            ans3: ["Get in the one filled with hungry tigers and blood-sucking bats.", -2],
+            ans4: ["Get in the one filled with assassins firing Tommy guns", -1]
         },
     5: {
-            question: "You Are Too Dizzy To Do Things. You...",
-            ans1: ["Take A Nap Until You Become As Good As New.", -1],
-            ans2: ["Take Some Other Medicine If You Don't Have Pills And Take A Nap.", 1],
-            ans3: ["Take Some Pills And Take A Nap Until You Feel Much Better.", 2],
-            ans4: ["Ask Someone To Buy You Medicine To Help You Feel Better.", -2]
+            question: "You are too Dizzy to to things. You...",
+            ans1: ["Take a nap until you become as good as new.", -1],
+            ans2: ["Take some other medicine if you don't have pills and take a nap.", 1],
+            ans3: ["Take some pills and take a nap until you feel much better.", 2],
+            ans4: ["Ask someone to buy you medicine to help you feel better.", -2]
         },
     6: {
-            question: "You Can't Buy A Pearl Necklace. You...",
-            ans1: ["Rob The Jewelry Store Necklace And Put It On Yourself To Play With.", -2],
-            ans2: ["Ask If You Have Enough Money To Buy Something Else To Wear.", 2],
-            ans3: ["Be Annoyed And Glare At The Jewel Clerk Very Angrily.", -1],
-            ans4: ["Go To Another Jewelry Store That Makes The Jewelry Very, Very Cheap.", 1]
+            question: "You can't buy a pearl necklace. You...",
+            ans1: ["Rob the jewelry store necklace and put it on yourself to play with.", -2],
+            ans2: ["Ask if you have enough money to buy something else to wear.", 2],
+            ans3: ["Be annoyed and glare at the jewel clerk very angrily.", -1],
+            ans4: ["Go to another jewelry store that makes the jewelry very, very cheap.", 1]
         },
     7: {
             question: "Be honest: Do you ever root for the bad guys to win in an action movie? ",
